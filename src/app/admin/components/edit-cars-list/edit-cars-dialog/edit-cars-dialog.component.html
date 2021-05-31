@@ -1,0 +1,127 @@
+<!-- class name
+<div class="p-fluid">
+  <div class="p-grid p-formgrid ">
+    <div class="p-col-12 p-md-6 p-lg-6">
+      <p-dropdown  [options]="carClassOptions" [showClear]="true" placeholder="Select by Class"
+                  (onChange)="onSortClassChange($event)" name="carClassOptionss" styleClass="p-mb-2 p-mb-md-0"
+                  appendTo="body">
+        <ng-template let-option pTemplate="item">
+          <p-badge *ngIf="option.label === 'A Class'" severity="success" value="{{option.label}}"></p-badge>
+          <p-badge *ngIf="option.label === 'B Class'" severity="info" value="{{option.label}}"></p-badge>
+          <p-badge *ngIf="option.label === 'C Class'" severity="warning" value="{{option.label}}"></p-badge>
+        </ng-template>
+      </p-dropdown>
+    </div>
+  </div>
+</div>
+-->
+
+<div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
+  <div class="checkbox_input">
+    <label for="CLASS_A">
+      <input type="radio" id="CLASS_A" name="pricing" (click)="getClickedClass($event.target)">
+      <p-badge severity="success" value="A Class"></p-badge>
+    </label>
+  </div>
+  <div class="checkbox_input">
+    <label for="CLASS_B">
+      <input type="radio" id="CLASS_B" name="pricing" (click)="getClickedClass($event.target)">
+      <p-badge severity="info" value="B Class"></p-badge>
+    </label>
+  </div>
+  <div class="checkbox_input">
+    <label for="CLASS_C">
+      <input type="radio" id="CLASS_C" name="pricing" (click)="getClickedClass($event.target)">
+      <p-badge severity="warning" value="C Class"></p-badge>
+    </label>
+  </div>
+</div>
+
+<form #editClass="ngForm" (ngSubmit)="submit()">
+  <div class="p-fluid">
+    <div class="p-grid p-formgrid">
+      <div class="p-col-12 p-md-6 p-lg-6">
+
+        <label for="allowedKmPerDay">Allowed Km Per Day
+          <p-inputNumber  #allowedKmPerDayInput="ngModel"
+                          [(ngModel)]="allowedKmPerDay" [showButtons]="true" buttonLayout="horizontal" [minFractionDigits]="0"
+                          inputId="allowedKmPerDay" id="allowedKmPerDay" spinnerMode="horizontal" [step]="10" name="allowedKmPerDay"
+                          [required]="true" decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success"
+                          suffix=" km" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
+          </p-inputNumber>
+          <small id="allowedKmPerDayInputError" class="text-danger"
+                 [class.d-none]="allowedKmPerDayInput.valid || allowedKmPerDayInput.untouched">
+            This field is required
+          </small>
+        </label>
+
+
+      </div>
+
+      <div class="p-col-12 p-md-6 p-lg-6">
+        <label for="dailyFine">Daily Fine
+          <p-inputNumber  #dailyFineInput="ngModel"
+                          [(ngModel)]="dailyFine" [showButtons]="true" buttonLayout="horizontal" [minFractionDigits]="0"
+                          inputId="dailyFine" id="dailyFine" spinnerMode="horizontal" [step]="2" name="dailyFine"
+                          [required]="true" decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success"
+                          incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"
+                          mode="currency" currency="EUR" locale="de-DE">
+          </p-inputNumber>
+          <small id="dailyFineError" class="text-danger"
+                 [class.d-none]="dailyFineInput.valid || dailyFineInput.untouched">
+            This field is required
+          </small>
+        </label>
+      </div>
+    </div>
+
+    <div class="p-grid p-formgrid">
+      <div class="p-col-12 p-md-6 p-lg-6">
+
+        <label for="costPerDay">Cost Per Day
+          <p-inputNumber  #costPerDayInput="ngModel"
+                          [(ngModel)]="costPerDay" [showButtons]="true" buttonLayout="horizontal" [minFractionDigits]="0"
+                          inputId="costPerDay" id="costPerDay" spinnerMode="horizontal" [step]="10" name="costPerDay"
+                          [required]="true" decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success"
+                          incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"
+                          mode="currency" currency="EUR" locale="de-DE">
+          </p-inputNumber>
+          <small id="costPerDayError" class="text-danger"
+                 [class.d-none]="costPerDayInput.valid || costPerDayInput.untouched">
+            This field is required
+          </small>
+        </label>
+
+      </div>
+      <div class="p-col-12 p-md-6 p-lg-6">
+
+        <label for="priceByKm">Price By Km
+          <p-inputNumber  #priceByKmInput="ngModel"
+                          [(ngModel)]="priceByKm" [showButtons]="true" buttonLayout="horizontal" [minFractionDigits]="0"
+                          inputId="priceByKm" id="priceByKm" spinnerMode="horizontal" [step]="1" name="priceByKm"
+                          [required]="true" decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success"
+                          incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"
+                          mode="currency" currency="EUR" locale="de-DE">
+          </p-inputNumber>
+          <small id="priceByKmError" class="text-danger"
+                 [class.d-none]="priceByKmInput.valid || priceByKmInput.untouched">
+            This field is required
+          </small>
+        </label>
+
+      </div>
+    </div>
+  </div>
+
+  <hr>
+  <div style="float: right">
+    <button pButton type="button" [label]="'CANCEL'" class="p-button-danger p-button-outlined p-mr-1"
+            icon="bx bx-x" (click)="ref.close()">
+      <i class="pi pi-trash"></i>
+    </button>
+    <button pButton type="submit" [label]="'SAVE'" icon="bx bx-save" [disabled]="editClass.invalid">
+      <i class="pi pi-save"></i>
+    </button>
+  </div>
+</form>
+

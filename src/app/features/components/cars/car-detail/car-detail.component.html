@@ -1,0 +1,280 @@
+<!-- breadcrumb_section - start
+================================================== -->
+<section class="breadcrumb_section text-center clearfix">
+  <div class="page_title_area has_overlay d-flex align-items-center clearfix"
+        style="background-image: url('../../../../../assets/images/breadcrumb/bg_02.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <br><br><br>
+      <h1 class="page_title text-white mb-0">Choose Your Car Options</h1>
+    </div>
+  </div>
+  <div class="breadcrumb_nav clearfix" style="background-color: #F2F2F2">
+    <div class="container">
+      <ul class="ul_li clearfix">
+        <li><a [routerLink]="['/home']">Home</a></li>
+        <li><a [routerLink]="['/cars']">Our Cars</a></li>
+        <li>Car Details</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<!-- breadcrumb_section - end
+================================================== -->
+
+
+<!-- details_section - start
+================================================== -->
+<div class="details_section sec_ptb_100 pb-0 clearfix">
+  <div class="container">
+    <div class="row justify-content-lg-between justify-content-md-center justify-content-sm-center">
+
+      <div class="col-lg-4 col-md-8 col-sm-10 col-xs-12">
+        <div class="account_tabs_menu clearfix" data-aos="fade-up" data-aos-delay="100"
+             style="background-color: #F2F2F2">
+          <h3 class="list_title mb_15">Car Details:</h3>
+          <ul class="ul_li_block nav" role="tablist">
+            <li>
+              <a class="active" data-toggle="tab" href="#admin_tab"><i class="fas fa-user"></i> Car Info</a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#history_tab"><i class="fas fa-address-book"></i>Rental Details</a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#history_tab"><i class="fas fa-address-book"></i>Car Reviews</a>
+            </li>
+            <li>
+              <a data-toggle="tab" href="#profile_tab"><i class="fas fa-file-alt"></i>Terms and conditions</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+      <div *ngIf="car" class="col-lg-8 col-md-8 col-sm-10 col-xs-12">
+        <div class="account_tab_content  tab-content">
+          <div id="admin_tab" class="tab-pane active">
+            <div class="car_choose_carousel mb_30 clearfix" data-aos-delay="300">
+              <div class="thumbnail_carousel">
+                <div class="item">
+                  <div class="item_head">
+                    <h4 class="item_title mb-0">{{car.modelDTO.brand}} {{car.modelDTO.modelType}}</h4>
+                    <ul class="review_text ul_li_right clearfix">
+                      <li class="text-right">
+                        <strong>Super</strong>
+                        <small>13+ Reviews</small>
+                      </li>
+                      <li><span class="bg_default_blue">4.8/5</span></li>
+                    </ul>
+                  </div>
+                  <img class="car-border" src="../../../../assets/images/feature/{{car.modelDTO.brand}} {{car.modelDTO.modelType}}.jpg" alt="image_not_found">
+                  <ul class="btns_group ul_li_center clearfix">
+                    <li>
+                      <span class="custom_btn btn_width bg_default_blue"><del>320€/Day</del> {{car.modelDTO.princingDetailsDTO.costPerDay}}€/Day</span>
+                    </li>
+                    <li>
+                      <button [disabled]="loggedInUser" [routerLink]="['/reservation', car.carId]"
+                         class="custom_btn btn_width bg_default_red text-uppercase">Book it
+                        <img src="../../../../../assets/images/icons/icon_01.png" alt="icon_not_found">
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="car_choose_content">
+              <div id="carOption" class="faq_accordion mb_30">
+
+                <div class="card">
+                  <div class="card-header">
+                    <a class="collapsed" data-toggle="collapse" href="#collapse_car_option">
+                      This Car Options
+                    </a>
+                  </div>
+                  <div id="collapse_car_option" class="collapse" data-parent="#carOption">
+                    <div class="card-body">
+                      <ul class="info_list ul_li_block mb_15 clearfix">
+                        <li><strong>Passengers:</strong> {{car.modelDTO.modelOptionDTO.seatsNumber}}</li>
+                        <li><strong>Suitcase:</strong> {{car.modelDTO.modelOptionDTO.bagsNumber}}</li>
+                        <li><strong>Air Conditioning: </strong> <i class="pi pi-check-circle" style="color: #4CAF50"></i></li>
+                        <li><strong>{{(car.modelDTO.modelOptionDTO.isAutomatic) ? 'Automatic:' : 'Manual:'}} </strong> <i class="pi pi-check-circle" style="color: #4CAF50"></i></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="profile_tab" class="tab-pane fade">
+
+
+            <div class="faq_content">
+              <h2 class="title_text mb_15" >Official Rental Information:</h2>
+
+              <p class="mb_30">
+                Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque ipsum sapien, cursus eu scelerisque eget, scelerisque nec nulla. In turpis ex, congue ut scelerisque ut, euismod a turpis. Nunc metus purus, pretium ac nunc vitae, ultricies euismod magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer hendrerit, ipsum et tristique tincidunt, mauris eros tristique dolor, ut ornare turpis sapien at tellus
+              </p>
+
+              <div id="faq_accordion" class="faq_accordion mb_30">
+                <div class="card">
+                  <div class="card-header">
+                    <a data-toggle="collapse" href="#collapse_one">
+                      When the rentals can be extended up?
+                    </a>
+                  </div>
+                  <div id="collapse_one" class="collapse show" data-parent="#faq_accordion">
+                    <div class="card-body">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header">
+                    <a class="collapsed" data-toggle="collapse" href="#collapse_two">
+                      What documents and ID are required to rent a car?
+                    </a>
+                  </div>
+                  <div id="collapse_two" class="collapse" data-parent="#faq_accordion">
+                    <div class="card-body">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header">
+                    <a class="collapsed" data-toggle="collapse" href="#collapse_three">
+                      When ornare arcu tristique sit amet. Phasellus sed sapien vitae magna tempus pulvinar quis at est?
+                    </a>
+                  </div>
+                  <div id="collapse_three" class="collapse" data-parent="#faq_accordion">
+                    <div class="card-body">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header">
+                    <a class="collapsed" data-toggle="collapse" href="#collapse_four">
+                      Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Class aptent taciti sociosqu ad litora torquent per?
+                    </a>
+                  </div>
+                  <div id="collapse_four" class="collapse" data-parent="#faq_accordion">
+                    <div class="card-body">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header">
+                    <a class="collapsed" data-toggle="collapse" href="#collapse_five">
+                      When the rentals can be extended up?
+                    </a>
+                  </div>
+                  <div id="collapse_five" class="collapse" data-parent="#faq_accordion">
+                    <div class="card-body">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <p class="mb-0">
+                Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque ipsum sapien, cursus eu scelerisque eget, scelerisque nec nulla. In turpis ex, congue ut scelerisque ut, euismod a turpis. Nunc metus purus, pretium ac nunc vitae, ultricies euismod magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Integer hendrerit, ipsum et tristique tincidunt, mauris eros tristique dolor, ut ornare turpis sapien at tellus
+              </p>
+            </div>
+
+
+          </div>
+
+          <div id="history_tab" class="tab-pane fade">
+            <div  class="rent_details_info">
+              <h3 class="title_text mb_15">
+                <i class="fas fa-user"></i>
+                Driver & License Requirements
+                </h3>
+              <p>When you pick the car up, you'll need:</p>
+              <div class="car_choose_content ml-5">
+                <ul class="ul_li_block info_list ul_li_block clearfix ">
+                  <li class="clearfix"><i style="color: #0048B9" class="far fa-id-card"></i>
+                    Passport or national ID card</li>
+                  <li><i style="color: #0048B9" class="far fa-id-card"></i>
+                    Driving licence</li>
+                  <li><i style="color: #0048B9" class="fab fa-cc-mastercard"></i>
+                    Credit card</li>
+                </ul>
+              </div>
+              <div data-aos="fade-up">
+                <p class="terms_condition">
+                  <i style="color: green" class="fas fa-info-circle mr-1"></i>
+                  You must be at least 21 years old to rent this car.
+                  Collision Damage Waiver (CDW)</p>
+              </div>
+            </div>
+            <hr>
+            <div  class="rent_details_info">
+              <h3 class="title_text mb_15">
+                <i class="fas fa-shield-check"></i>
+                Security Deposit : 700,00 €
+              </h3>
+              <div class="car_choose_content ml-5">
+                <ul class="ul_li_block info_list ul_li_block clearfix ">
+                  <li class="clearfix">
+                    At pick-up, the main driver will leave a refundable security deposit of 700,00 € on their credit card. Cash and debit cards are not accepted.
+                    The counter staff will confirm how much this will be.</li>
+                </ul>
+              </div>
+            </div>
+            <hr>
+            <div class="rent_details_info">
+              <h3 class="title_text mb_15">
+                <i class="fas fa-car-crash"></i>
+                Damage Excess : 1331,00 €
+              </h3>
+              <div class="car_choose_content ml-5">
+                <ul class="ul_li_block info_list ul_li_block clearfix ">
+                  <li class="clearfix">
+                    If the car's bodywork gets damaged, you’re covered by the Collision
+                    Damage Waiver. This means that the most you'll pay
+                    towards repairs is the damage excess ( 1331,00 €).
+                  </li>
+                  <li class="clearfix">
+                    This cover is only valid if you stick to the terms of the rental agreement.
+                    It doesn't cover other parts of the car (e.g. windows, wheels, interior or
+                    undercarriage), or charges (e.g. for towing or off-road time), or anything
+                    in the car (e.g. child seats, GPS devices or personal belongings).
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <hr>
+            <div  class="rent_details_info">
+              <h3 class="title_text mb_15">
+                <i class="fas fa-road"></i>
+                Mileage 450 kilometres per rental
+              </h3>
+              <div class="car_choose_content ml-5">
+                <ul class="ul_li_block info_list ul_li_block clearfix ">
+                  <li class="clearfix">
+                    If you drive more than 450 kilometres during your rental,
+                    you'll pay between 0,16 € and 0,32 € for each
+                    additional kilometre when you drop your car off.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <hr>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- details_section - end
+================================================== -->
+

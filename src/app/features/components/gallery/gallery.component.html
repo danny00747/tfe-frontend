@@ -1,0 +1,184 @@
+<!-- breadcrumb_section - start
+================================================== -->
+<p-toast></p-toast>
+<section class="breadcrumb_section text-center clearfix">
+  <div class="page_title_area has_overlay d-flex align-items-center clearfix"
+        style="background-image: url('../../../../assets/images/breadcrumb/road.jpeg')">
+    <div class="overlay"></div>
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+      <br><br><br>
+      <h1 class="page_title text-white mb-0">Gallery</h1>
+    </div>
+  </div>
+  <div class="breadcrumb_nav clearfix"style="background-color: #F2F2F2">
+    <div class="container">
+      <ul class="ul_li clearfix">
+        <li><a >Home</a></li>
+        <li>Gallery</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<!-- breadcrumb_section - end
+================================================== -->
+
+
+<!-- gallery_section - start
+================================================== -->
+<section class="gallery_section sec_ptb_100 clearfix">
+  <div class="container">
+
+    <div class="row justify-content-center">
+      <div class="col-lg-6 col-md-8 col-sm-10 col-xs-12">
+        <div class="section_title mb_60 text-center" data-aos="fade-up" data-aos-delay="100">
+          <h2 class="title_text mb_15">
+            <span>Featured Vehicles</span>
+          </h2>
+          <p class="mb-0">
+            Mauris cursus quis lorem sed cursus. Aenean aliquam pellentesque magna, ut dictum ex pellentesque
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <ul class="button-group filters-button-group ul_li_center mb_30 clearfix" data-aos="fade-up" data-aos-delay="300">
+      <li><button #sort1 (click)="sortCars(sort1)" id="all" [className]="sortHeaders[0].active ? 'button active' : 'button'">{{sortHeaders[0].name}}</button></li>
+      <li><button #sort2 (click)="sortCars(sort2)" id="ford" [className]="sortHeaders[1].active ? 'button active' : 'button'">{{sortHeaders[1].name}}</button></li>
+      <li><button #sort3 (click)="sortCars(sort3)" id="opel" [className]="sortHeaders[2].active ? 'button active' : 'button'">{{sortHeaders[2].name}}</button></li>
+      <li><button #sort4 (click)="sortCars(sort4)" id="toyota" [className]="sortHeaders[3].active ? 'button active' : 'button'">{{sortHeaders[3].name}}</button></li>
+      <li><button #sort5 (click)="sortCars(sort5)" id="volkswagen" [className]="sortHeaders[4].active ? 'button active' : 'button'">{{sortHeaders[4].name}}</button></li>
+    </ul>
+
+    <div class="feature_vehicle_filter mb-0 element-grid clearfix">
+
+      <p-dataView [value]="cars" [paginator]="true" [rows]="9" alwaysShowPaginator=false filterBy="name"
+                  paginatorDropdownAppendTo="body" [rowsPerPageOptions]="[10,15,20]" layout="grid">
+
+        <ng-template let-car pTemplate="gridItem">
+          <div class="element-item sedan" data-category="sedan">
+            <div class="feature_vehicle_item" data-aos-delay="100">
+              <h3 class="item_title mb-0">
+                <a [routerLink]="['/cars', car.carId]">
+                  {{car.modelDTO.modelType}} {{car.modelDTO.brand}}
+                </a>
+              </h3>
+              <div class="item_image position-relative">
+                <a class="image_wrap">
+                  <img src="../../../../assets/images/feature/{{car.modelDTO.brand}} {{car.modelDTO.modelType}}.jpg" alt="image_not_found">
+                </a>
+                <span class="item_price bg_default_blue">{{car.modelDTO.princingDetailsDTO.costPerDay}}€/Day</span>
+              </div>
+              <ul class="info_list ul_li_center clearfix">
+                <li>{{car.modelDTO.modelOptionDTO.bagsNumber}} Bags</li>
+                <li>{{car.modelDTO.modelOptionDTO.seatsNumber}} Passengers</li>
+                <li>{{(car.modelDTO.modelOptionDTO.isAutomatic) ? 'Auto' : 'Manual'}}</li>
+                <li>Clim</li>
+              </ul>
+            </div>
+          </div>
+        </ng-template>
+      </p-dataView>
+
+    </div>
+
+  </div>
+</section>
+<!-- gallery_section - end
+================================================== -->
+
+
+<!-- search_section - start
+================================================== -->
+<section class="search_section sec_ptb_100 clearfix" style="background-color: #161829">
+  <div class="container">
+    <div class="section_title text-center mb_60">
+      <h2 class="title_text text-white mb-0" data-aos-delay="100"><span>Find the right car for every occasion</span></h2>
+    </div>
+
+    <div class="advance_search_form2 p-0 mt-0 mb_60 shadow-none">
+        <div class="row align-items-end">
+
+          <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+            <div class="form_item" data-aos="fade-up" data-aos-delay="400">
+              <h4 class="input_title text-white">PickUp A Date</h4>
+              <p-calendar appendTo="body" [showIcon]="true" [(ngModel)]="date1" [minDate]="minDate"
+                          [placeholder]="'pickUp date'" inputId="range1">
+              </p-calendar>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+            <div class="form_item" data-aos="fade-up" data-aos-delay="400">
+              <h4 class="input_title text-white">Return Date</h4>
+              <p-calendar appendTo="body" [disabled]="!date1" [showIcon]="true" [(ngModel)]="date2" [minDate]="date1"
+                          [placeholder]="'return date'" inputId="range2">
+              </p-calendar>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+            <div class="price-range-area clearfix" data-aos="fade-up" data-aos-delay="500">
+              <h4 class="input_title text-white">Price</h4>
+              <p-slider styleClass="slider-range" [(ngModel)]="rangeValues" [step]="5" [range]="true" [min]="110" [max]="300"></p-slider>
+              <h4 class="input_title" style="color: white">{{rangeValues[0] + '€ - ' + rangeValues[1] + '€'}}</h4>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+            <button [disabled]="!checkSubmission2()" type="submit" (click)="submitSecondQuery()"
+                    class="custom_btn bg_default_red text-uppercase">Find A Car
+              <img src="../../../../assets/images/icons/icon_01.png" alt="icon_not_found">
+            </button>
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <section class="container cars_section clearfix">
+
+    <div class="row offers_car_carousel slideshow4_slider" data-slick='{"dots": false}' data-aos="fade-up"
+         data-aos-delay="100">
+      <div class="row ml-auto">
+        <div class="col-sm-3 item gallery_fullimage_2">
+          <img src="../../../../assets/images/feature/small/Ford%20Focus.jpg" alt="image_not_found">
+          <div class="item_content text-white">
+            <span class="item_price bg_default_blue">170€/Day</span>
+            <h3 class="item_title text-white">Ford Focus</h3>
+            <a class="text_btn text-uppercase"><span>Book it</span>
+              <img src="../../../../assets/images/icons/icon_02.png" alt="icon_not_found"></a>
+          </div>
+        </div>
+        <div class="col-sm-3 item gallery_fullimage_2">
+          <img src="../../../../assets/images/feature/small/Citroen%20C3.jpg" alt="image_not_found">
+          <div class="item_content text-white">
+            <span class="item_price bg_default_blue">120€/Day</span>
+            <h3 class="item_title text-white">Citroen C3</h3>
+            <a class="text_btn text-uppercase"><span>Book it</span>
+              <img src="../../../../assets/images/icons/icon_02.png" alt="icon_not_found"></a>
+          </div>
+        </div>
+        <div class="col-sm-3 item gallery_fullimage_2">
+          <img src="../../../../assets/images/feature/small/Hyundai%20Tucson.jpg" alt="image_not_found">
+          <div class="item_content text-white">
+            <span class="item_price bg_default_blue">210€/Day</span>
+            <h3 class="item_title text-white">Hyundai Tucson</h3>
+            <a class="text_btn text-uppercase" href="#"><span>Book it</span>
+              <img src="../../../../assets/images/icons/icon_02.png" alt="icon_not_found"></a>
+          </div>
+        </div>
+        <div class="col-sm-3 item gallery_fullimage_2">
+          <img src="../../../../assets/images/feature/small/Nissan%20Juke.jpg" alt="image_not_found">
+          <div class="item_content text-white">
+            <span class="item_price bg_default_blue">230€/Day</span>
+            <h3 class="item_title text-white">Nissan Juke</h3>
+            <a class="text_btn text-uppercase" href="#"><span>Book it</span>
+              <img src="../../../../assets/images/icons/icon_02.png" alt="icon_not_found"></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</section>
+<!-- search_section - end
+================================================== -->

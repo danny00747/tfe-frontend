@@ -1,0 +1,212 @@
+<!-- breadcrumb_section - start
+================================================== -->
+<section class="breadcrumb_section text-center clearfix">
+  <div class="page_title_area has_overlay d-flex align-items-center clearfix"
+       data-bg-image="assets/images/breadcrumb/bg_01.jpg"
+       style="background-image: url('assets/images/breadcrumb/bg_06.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <br><br><br>
+      <h1 class="page_title text-white mb-0">Our cars</h1>
+    </div>
+  </div>
+  <div class="breadcrumb_nav clearfix" style="background-color: #F2F2F2">
+    <div class="container">
+      <ul class="ul_li clearfix">
+        <li><a>Home</a></li>
+        <li>Our Cars</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<!-- breadcrumb_section - end
+================================================== -->
+<!-- car_section - start
+================================================== -->
+
+
+<div class="car_section sec_ptb_100 clearfix">
+  <div class="container">
+    <div class="row justify-content-lg-between justify-content-md-center justify-content-sm-center">
+
+
+      <div class="col-lg-4 col-md-6 col-sm-8 col-xs-12">
+        <aside class="filter_sidebar sidebar_section" style="background-color: #F2F2F2">
+          <div class="sidebar_header" data-bg-gradient="linear-gradient(90deg, #0C0C0F, #292D45)"
+               style="background-image: linear-gradient(90deg, #0C0C0F, #292D45)">
+            <h3 class="text-white mb-0">Filters</h3>
+          </div>
+          <div class="sb_widget">
+            <div>
+              <div class="sb_widget price-range-area clearfix" data-aos="fade-up" data-aos-delay="100">
+                <h4 class="input_title">Price</h4>
+                <p-slider [(ngModel)]="rangeValues" [step]="5" [range]="true" [min]="110" [max]="300"></p-slider>
+                <br>
+                <h4 class="input_title" style="color: darkgreen">{{rangeValues[0] + '€ - ' + rangeValues[1] + '€'}}</h4>
+              </div>
+
+              <div class="sb_widget" data-aos="fade-up" data-aos-delay="100">
+                <h4 class="input_title">Number of passengers:</h4>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="checkbox_input">
+                      <label for="passengers_radio1">
+                        <input type="radio" id="passengers_radio1" name="passengers" checked> 2
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="checkbox_input">
+                      <label for="passengers_radio2">
+                        <input type="radio" id="passengers_radio2" name="passengers">5
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="checkbox_input">
+                      <label for="passengers_radio3">
+                        <input type="radio" id="passengers_radio3" name="passengers">4
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="checkbox_input">
+                      <label for="passengers_radio4">
+                        <input type="radio" id="passengers_radio4" name="passengers"> 7 or more
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sb_widget" data-aos="fade-up" data-aos-delay="100">
+                <h4 class="input_title">Number of bags:</h4>
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="checkbox_input">
+                      <label for="2bags">
+                        <input type="radio" id="2bags" name="bags" (click)="getNbBags($event.target)"> 2
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="checkbox_input">
+                      <label for="3bags">
+                        <input type="radio" id="3bags" name="bags" (click)="getNbBags($event.target)">3
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="checkbox_input">
+                      <label for="4bags">
+                        <input type="radio" id="4bags" name="bags" (click)="getNbBags($event.target)">4
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="checkbox_input">
+                      <label for="5bags">
+                        <input type="radio" id="5bags" name="bags" (click)="getNbBags($event.target)"> 5 or more
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="sb_widget sb_additional_options" data-aos="fade-up" data-aos-delay="100">
+                <h4 class="input_title">Additional Options:</h4>
+                <div class="checkbox_input">
+                  <label for="isAutomatic"><input type="radio" name="isAutomatic" id="isAutomatic">Manual</label>
+                </div>
+
+                <div class="checkbox_input">
+                  <label for="isAutomatic1"><input type="radio" name="isAutomatic" id="isAutomatic1">Auto</label>
+                </div>
+
+                <div class="checkbox_input">
+                  <label for="air_conditioning"><input type="checkbox" id="air_conditioning"> Air conditioning</label>
+                </div>
+              </div>
+
+              <hr data-aos="fade-up" data-aos-delay="100">
+
+              <div data-aos="fade-up" data-aos-delay="100">
+                <button (click)="applyFilters()" type="submit" class="custom_btn bg_default_red text-uppercase">Apply Filters
+                  <img src="assets/images/icons/icon_01.png" alt="icon_not_found"></button>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="col-lg-8 col-md-10 col-sm-12 col-xs-12">
+        <div class="item_shorting clearfix" data-aos="fade-up" data-aos-delay="100">
+          <div class="row align-items-center justify-content-lg-between">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+              <span class="item_available">Available offers {{cars.length}}</span>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div style="float: right" class="form_item mb-0">
+                  <p-dropdown appendTo="body" [options]="sortOptions" [showClear]="true"
+                              placeholder="Filter By Brand" (onChange)="onSortChange($event)">
+                  </p-dropdown>
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <br>
+
+        <div *ngIf="cars.length === 0">
+          <div class="p-field p-col-12 p-md-6">
+            <p-skeleton width="30rem" height="20rem"></p-skeleton>
+            <br>
+            <p-skeleton styleClass="p-mb-2" height="2rem" borderRadius="16px"></p-skeleton>
+            <p-skeleton styleClass="p-mb-2" height="2rem" borderRadius="16px"></p-skeleton>
+            <p-skeleton styleClass="p-mb-2" height="2rem" borderRadius="16px"></p-skeleton>
+          </div>
+        </div>
+
+        <div *ngIf="cars.length !== 0" class="row">
+
+          <p-dataView [value]="cars" [paginator]="true" [rows]="10" alwaysShowPaginator=false filterBy="name"
+                      paginatorDropdownAppendTo="body" [rowsPerPageOptions]="[10,15,20]" layout="grid">
+
+            <ng-template let-car pTemplate="gridItem">
+              <div class="col-lg-6 col-md-6">
+                <div class="feature_vehicle_item">
+                  <h3 class="item_title mb-0">
+                    <a [routerLink]="['/cars', car.carId]">
+                      {{car.modelDTO.brand}} {{car.modelDTO.modelType}}
+                    </a>
+                  </h3>
+                  <div class="item_image position-relative">
+                    <a class="image_wrap">
+                      <img src="../../../../assets/images/feature/{{car.modelDTO.brand}} {{car.modelDTO.modelType}}.jpg"
+                           alt="image_not_found">
+                    </a>
+                    <span class="item_price bg_default_blue">{{car.modelDTO.princingDetailsDTO.costPerDay}}€/Day</span>
+                  </div>
+                  <ul class="info_list ul_li_center clearfix">
+                    <li>{{car.modelDTO.modelOptionDTO.bagsNumber}} Bags</li>
+                    <li>{{car.modelDTO.modelOptionDTO.seatsNumber}} Passengers</li>
+                    <li>{{(car.modelDTO.modelOptionDTO.isAutomatic) ? 'Auto' : 'Manual'}}</li>
+                    <li>Clim</li>
+                  </ul>
+                </div>
+              </div>
+              <br>
+            </ng-template>
+          </p-dataView>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- car_section - end
+================================================== -->
+
